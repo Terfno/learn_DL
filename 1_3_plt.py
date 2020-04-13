@@ -8,4 +8,4 @@ y = np.sin(x)
 
 ## draw
 plt.plot(x, y)
-plt.show()
+plt.savefig('1_3z.png')
