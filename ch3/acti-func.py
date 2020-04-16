@@ -8,13 +8,17 @@ def step_funciton(x): # xはnumpy.array
 def sigmoid(x):
   return 1 / (1 + np.exp(-x)) # numpyのbroadcastによって、np.arrayに対応できている
 
+def relu(x):
+  return np.maximum(0, x)
+
 x = np.arange(-5.0, 5.0, 0.1)
 y = step_funciton(x)
 plt.plot(x, y)
 
-x = np.arange(-5.0, 5.0, 0.1)
 y = sigmoid(x)
 plt.plot(x, y)
 
-plt.ylim(-0.1, 1.1) # y座標の範囲を指定
+y = relu(x)
+plt.plot(x, y)
+
 plt.savefig('acti.png')
