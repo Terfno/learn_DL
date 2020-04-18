@@ -10,3 +10,9 @@ print(dotAB)
 # dotBC = np.dot(B, C)
 # print(dotBC)
 # 行列Bの1次元目と、Cの0次元目の要素数が一致しないのでエラー
+
+InputX = np.array([1, 2])
+WeightW = np.array([[1, 3, 5], [2, 4, 6]])
+OutputY = np.dot(InputX, WeightW)
+
+print(OutputY)
