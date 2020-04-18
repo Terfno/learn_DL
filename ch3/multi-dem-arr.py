@@ -1,15 +1,12 @@
 import numpy as np
 
-A = np.array([1, 2, 3, 4])
+A = np.array([[1, 2], [3, 4], [5, 6]])
+B = np.array([[7, 8, 9], [10, 11, 12]])
 
-print("A")
-print(A)
-print(np.ndim(A))
-print(A.shape)
-print(A.shape[0])
+dotAB = np.dot(A, B)
+print(dotAB)
 
-B = np.array([[1, 2], [3, 4], [5, 6]])
-print("B")
-print(B)
-print(np.ndim(B))
-print(B.shape)
+# C = np.array([[1, 2], [3, 4]])
+# dotBC = np.dot(B, C)
+# print(dotBC)
+# 行列Bの1次元目と、Cの0次元目の要素数が一致しないのでエラー
