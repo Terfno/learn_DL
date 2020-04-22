@@ -28,3 +28,24 @@ def mean_squared_err(y, t):
 def cross_entropy_err(y, t):
   delta = 1e-7
   return -np.sum(t * np.log(y + delta))
+
+# gradient
+def numerical_gradient(f, x):
+  h = 1e-4
+  grad = np.zeros_like(x) # xと同じ計上の0配列
+
+  for idx in range(x.size):
+    tmp_val = x[idx]
+
+    # f(x+h)
+    x[idx] = tmp_val + h
+    fxh1 = f(x)
+
+    # f(x-h)
+    x[idx] = tmp_val - h
+    fxh2 = f(x)
+
+    grad[idx] = (fxh1 - fxh2) / (2*h)
+    x[idx] = tmp_val # 元の値を代入し直す
+  
+  return grad
