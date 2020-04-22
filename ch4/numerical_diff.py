@@ -8,6 +8,9 @@ def numerical_diff(f, x):
 def function_1(x):
   return 0.01*x**2 + 0.1*x
 
+def function_2(x):
+  return np.sum(x**2)
+
 x = np.arange(0.0, 20.0, 0.1)
 y = function_1(x)
 
