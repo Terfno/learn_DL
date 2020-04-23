@@ -5,7 +5,10 @@ dev:
 	@docker run -it python:3.8.2-alpine3.11 sh
 
 run:
-	@docker run -it --rm --name=${CNAME} -v ${PWD}:/py -w /py ${INAME} sh
+	@docker run -it --rm --name="${CNAME}" -v ${PWD}:/py -w /py ${INAME} sh
+
+stop:
+	@docker stop ${CNAME}
 
 # rm
 rm:
