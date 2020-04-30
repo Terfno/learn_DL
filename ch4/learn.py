@@ -2,6 +2,7 @@ import sys, os
 sys.path.append(os.pardir)
 from common import *
 import numpy as np
+import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
 
 class TwoLayerNet:
@@ -49,9 +50,9 @@ class TwoLayerNet:
     W1, W2 = self.params['W1'], self.params['W2']
     b1, b2 = self.params['b1'], self.params['b2']
     grads = {}
-    
+
     batch_num = x.shape[0]
-    
+
     # forward
     a1 = np.dot(x, W1) + b1
     z1 = sigmoid(a1)
@@ -99,8 +100,8 @@ def main():
 
     # update params
     for key in ('W1', 'b1', 'W2', 'b2'):
-      network.params[key] -= Learning_rate
-    
+      network.params[key] -= Learning_rate * grad[key]
+
     # log
     loss = network.loss(x_batch, t_batch)
     train_loss_list.append(loss)
@@ -111,6 +112,15 @@ def main():
       test_acc = network.accuracy(x_test, t_test)
       train_acc_list.append(test_acc)
       print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+
+  # draw graph
+  x = np.arange(len(train_acc_list))
+  plt.plot(x, train_acc_list, label='train acc')
+  plt.xlabel("epochs")
+  plt.ylabel("accuracy")
+  plt.ylim(0, 1.0)
+  plt.legend(loc='lower right')
+  plt.savefig('l.png')
 
 
 if __name__ == "__main__":

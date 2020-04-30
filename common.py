@@ -51,4 +51,4 @@ def numerical_gradient(f, x):
   return grad
 
 def sigmoid_grad(x):
-    return (1.0 - sigmoid(x)) * sigmoid(x)
+  return (1.0 - sigmoid(x)) * sigmoid(x)
