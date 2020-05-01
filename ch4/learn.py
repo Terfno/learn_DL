@@ -14,8 +14,10 @@ class TwoLayerNet:
     self.params['b2'] = np.zeros(output_size)
 
   def predict(self, x):
-    W1, W2 = self.params['W1'], self.params['W2']
-    b1, b2 = self.params['b1'], self.params['b2']
+    W1 = self.params['W1']
+    W2 = self.params['W2']
+    b1 = self.params['b1']
+    b2 = self.params['b2']
 
     a1 = np.dot(x, W1) + b1
     z1 = sigmoid(a1)
@@ -24,7 +26,7 @@ class TwoLayerNet:
 
     return y
 
-  def loss(self, x, t):
+  def loss(self, x, t): # x:input, t:teacher
     y = self.predict(x)
     return cross_entropy_err(y, t)
 
@@ -35,7 +37,7 @@ class TwoLayerNet:
     accuracy = np.sum(y == t) / float(x.shape[0])
     return accuracy
 
-  def numerical_gradient(self, x, t):
+  def numerical_gradient(self, x, t): # x:input, t:teacher
     loss_W = lambda W: self.loss(x, t)
 
     grads = {}
@@ -102,8 +104,10 @@ def main():
     for key in ('W1', 'b1', 'W2', 'b2'):
       network.params[key] -= Learning_rate * grad[key]
 
-    # log
+    # loss func
     loss = network.loss(x_batch, t_batch)
+
+    # log
     train_loss_list.append(loss)
 
     # epoch
