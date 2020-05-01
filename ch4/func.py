@@ -17,9 +17,9 @@ def softmax(x: np.ndarray) -> np.ndarray: # x:input / return output of softmax f
     https://qiita.com/shohei-ojs/items/d66783bcead3eb7efd82
     "axis = -1, keepdims = True" is 2dim and 1dim to share process
   """
-  c = np.max(x, axis = -1, keepdims = True)
+  c = np.max(x, axis=-1, keepdims=True)
   exp_x = np.exp(x - c) # for overflow
-  sum_exp_x = np.sum(exp_x, axis = -1, keepdims = True)
+  sum_exp_x = np.sum(exp_x, axis=-1, keepdims=True)
   y = exp_x / sum_exp_x
 
   return y
