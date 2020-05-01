@@ -13,9 +13,12 @@ def relu(x):
 
 # output
 def softmax(a):
-  exp_a = np.exp(a)
+  c = np.max(a) # get max num
+  exp_a = np.exp(a - c) # sub largest value from each element
+
   sum_exp_a = np.sum(exp_a)
   y = exp_a / sum_exp_a
+
   return y
 
 def identity_function(x):
