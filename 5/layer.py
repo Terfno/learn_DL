@@ -51,7 +51,7 @@ class Affine:
 
   def backward(self, dout: np.ndarray) -> np.ndarray: # dout: diff value of nn output / return dx
     dx = np.dot(dout, self.W.T)
-    self.dW = np.dot(self.x.T)
+    self.dW = np.dot(self.x.T, dout)
     self.db = np.sum(dout, axis=0)
 
     return dx
