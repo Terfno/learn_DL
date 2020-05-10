@@ -56,3 +56,23 @@ class Affine:
 
     return dx
 
+
+class SoftmaxWithLoss:
+  def __init__(self):
+    self.loss = None # loss
+    self.y = None # outpu of softmax
+    self.t = None # data of teacher(one-hot vec)
+
+  def forward(self, x: np.ndarray, t: np.ndarray) -> np.ndarray: # x:input to nn, t:data of teacher / return value of cross entropy error
+    self.t = t
+    self.y = softmax(x)
+    self.loss = cross_entropy_error(self.y, self.t)
+
+    return self.loss
+
+  def backward(self, dout: np.ndarray=1) -> np.ndarray: # dout: diff value of nn output / return dx
+    batch_size = self.t.shape[0]
+    dx = (self.y - self.t) / batch_size
+
+    return dx
+
